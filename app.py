@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 from groq import Groq
 from urllib.parse import urlparse, parse_qs
 from datetime import datetime
-# Única linha de importação necessária para a transcrição:
-from youtube_transcript_api import YouTubeTranscriptApi
+# CORREÇÃO DEFINITIVA: Importamos o módulo inteiro, tornando o nome 'youtube_transcript_api' disponível.
+import youtube_transcript_api 
 
 # --- CONFIGURAÇÃO ---
 st.set_page_config(page_title="Content Master AI", page_icon="💡", layout="wide")
@@ -42,11 +42,12 @@ def get_video_transcript(video_url):
     if not video_id:
         return "URL inválida.", False
     try:
-        # CHAMADA CORRIGIDA: Usamos o caminho completo do módulo para a função.
+        # CHAMADA CORRIGIDA: Usamos o caminho completo do módulo.
         transcript_list = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(video_id, languages=['pt', 'en'])
         transcript_text = " ".join([item['text'] for item in transcript_list])
         return transcript_text, True
     except Exception as e:
+        # O erro é capturado aqui, e o código anterior não vai mais falhar por NameError.
         return f"Erro ao obter transcrição: {str(e)}", False
 
 def generate_content(transcript, content_type, user_style):
@@ -179,4 +180,3 @@ st.markdown(f"""
     Content Master AI © {datetime.now().year} • O Seu Novo Diretor de Criação.
 </div>
 """, unsafe_allow_html=True)
-
