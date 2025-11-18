@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 from bs4 import BeautifulSoup
 from groq import Groq
-from youtube_transcript_api import YouTubeTranscriptApi
+import youtube_transcript_api as yta
 from urllib.parse import urlparse, parse_qs
 from datetime import datetime # <- ADICIONE ESTA LINHA
 
@@ -41,7 +41,7 @@ def get_video_transcript(video_url):
     if not video_id:
         return "URL inválida.", False
     try:
-        transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['pt', 'en'])
+        transcript_list = yta.YouTubeTranscriptApi.get_transcript(video_id, languages=['pt', 'en'])
         transcript_text = " ".join([item['text'] for item in transcript_list])
         return transcript_text, True
     except Exception as e:
@@ -178,3 +178,4 @@ st.markdown(f"""
 </div>
 
 """, unsafe_allow_html=True)
+
