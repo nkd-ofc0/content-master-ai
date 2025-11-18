@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from groq import Groq
 from youtube_transcript_api import YouTubeTranscriptApi
 from urllib.parse import urlparse, parse_qs
+from datetime import datetime # <- ADICIONE ESTA LINHA
 
 # --- CONFIGURAÇÃO ---
 st.set_page_config(page_title="Content Master AI", page_icon="💡", layout="wide")
@@ -175,4 +176,5 @@ st.markdown(f"""
 <div style='position: fixed; left: 0; bottom: 0; width: 100%; text-align: center; padding: 10px; font-size: 0.8rem; color: #888;'>
     Content Master AI © {datetime.now().year} • O Seu Novo Diretor de Criação.
 </div>
+
 """, unsafe_allow_html=True)
