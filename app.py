@@ -2,9 +2,10 @@ import streamlit as st
 import requests
 from bs4 import BeautifulSoup
 from groq import Groq
-import youtube_transcript_api as yta
+# CORREÇÃO 1: Importamos a classe diretamente, não o módulo com alias.
+from youtube_transcript_api import YouTubeTranscriptApi 
 from urllib.parse import urlparse, parse_qs
-from datetime import datetime # <- ADICIONE ESTA LINHA
+from datetime import datetime 
 
 # --- CONFIGURAÇÃO ---
 st.set_page_config(page_title="Content Master AI", page_icon="💡", layout="wide")
@@ -41,7 +42,8 @@ def get_video_transcript(video_url):
     if not video_id:
         return "URL inválida.", False
     try:
-        transcript_list = yta.YouTubeTranscriptApi.get_transcript(video_id, languages=['pt', 'en'])
+        # CORREÇÃO 2: A função é chamada diretamente pela classe importada
+        transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['pt', 'en'])
         transcript_text = " ".join([item['text'] for item in transcript_list])
         return transcript_text, True
     except Exception as e:
@@ -176,6 +178,4 @@ st.markdown(f"""
 <div style='position: fixed; left: 0; bottom: 0; width: 100%; text-align: center; padding: 10px; font-size: 0.8rem; color: #888;'>
     Content Master AI © {datetime.now().year} • O Seu Novo Diretor de Criação.
 </div>
-
 """, unsafe_allow_html=True)
-
