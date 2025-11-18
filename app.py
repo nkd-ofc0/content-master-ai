@@ -4,8 +4,9 @@ from bs4 import BeautifulSoup
 from groq import Groq
 from urllib.parse import urlparse, parse_qs
 from datetime import datetime
-# CORREÇÃO DEFINITIVA: Importamos o módulo inteiro, tornando o nome 'youtube_transcript_api' disponível.
 import youtube_transcript_api 
+# CORREÇÃO FINAL: Importamos as classes de erro específicas para diagnóstico!
+from youtube_transcript_api._errors import NoTranscriptFound, VideoUnavailable, TranscriptsDisabled 
 
 # --- CONFIGURAÇÃO ---
 st.set_page_config(page_title="Content Master AI", page_icon="💡", layout="wide")
@@ -42,13 +43,19 @@ def get_video_transcript(video_url):
     if not video_id:
         return "URL inválida.", False
     try:
-        # CHAMADA CORRIGIDA: Usamos o caminho completo do módulo.
+        # Chamada correta: Acessa o objeto estático da API
         transcript_list = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(video_id, languages=['pt', 'en'])
         transcript_text = " ".join([item['text'] for item in transcript_list])
         return transcript_text, True
+    
+    # TRATAMENTO DE ERROS AVANÇADO (Identifica o problema real do vídeo)
+    except (NoTranscriptFound, TranscriptsDisabled):
+        return "Erro: O vídeo não possui legendas no idioma Português ou Inglês. Tente outro vídeo.", False
+    except VideoUnavailable:
+        return "Erro: O vídeo é privado, foi removido, ou a URL está incorreta.", False
     except Exception as e:
-        # O erro é capturado aqui, e o código anterior não vai mais falhar por NameError.
-        return f"Erro ao obter transcrição: {str(e)}", False
+        # Se falhar aqui, é um erro inesperado de ambiente/código.
+        return f"Erro Inesperado: {type(e).__name__} - {str(e)}", False
 
 def generate_content(transcript, content_type, user_style):
     client = Groq(api_key=GROQ_API_KEY)
