@@ -3,9 +3,9 @@ import requests
 from bs4 import BeautifulSoup
 from groq import Groq
 from urllib.parse import urlparse, parse_qs
-from datetime import datetime 
-# CORREÇÃO DEFINITIVA: Importamos o módulo inteiro para evitar conflitos de nomes.
-import youtube_transcript_api 
+from datetime import datetime
+# Única linha de importação necessária para a transcrição:
+from youtube_transcript_api import YouTubeTranscriptApi
 
 # --- CONFIGURAÇÃO ---
 st.set_page_config(page_title="Content Master AI", page_icon="💡", layout="wide")
@@ -179,3 +179,4 @@ st.markdown(f"""
     Content Master AI © {datetime.now().year} • O Seu Novo Diretor de Criação.
 </div>
 """, unsafe_allow_html=True)
+
