@@ -2,10 +2,10 @@ import streamlit as st
 import requests
 from bs4 import BeautifulSoup
 from groq import Groq
-# CORREÇÃO 1: Importamos a classe diretamente, não o módulo com alias.
-from youtube_transcript_api import YouTubeTranscriptApi 
 from urllib.parse import urlparse, parse_qs
 from datetime import datetime 
+# CORREÇÃO DEFINITIVA: Importamos o módulo inteiro para evitar conflitos de nomes.
+import youtube_transcript_api 
 
 # --- CONFIGURAÇÃO ---
 st.set_page_config(page_title="Content Master AI", page_icon="💡", layout="wide")
@@ -42,8 +42,8 @@ def get_video_transcript(video_url):
     if not video_id:
         return "URL inválida.", False
     try:
-        # CORREÇÃO 2: A função é chamada diretamente pela classe importada
-        transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['pt', 'en'])
+        # CHAMADA CORRIGIDA: Usamos o caminho completo do módulo para a função.
+        transcript_list = youtube_transcript_api.YouTubeTranscriptApi.get_transcript(video_id, languages=['pt', 'en'])
         transcript_text = " ".join([item['text'] for item in transcript_list])
         return transcript_text, True
     except Exception as e:
