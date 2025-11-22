@@ -132,7 +132,7 @@ with col_login:
         
         st.markdown("---")
         st.markdown("#### 🚀 Assine para Produção Ilimitada")
-        st.markdown("<h2 style='text-align:center; color:#00C853; margin:0;'>R$ 29,90<span style='font-size:1rem; color:#888'>/mês</span></h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='text-align:center; color:#00C853; margin:0;'>R$ 16,90<span style='font-size:1rem; color:#888'>/mês</span></h2>", unsafe_allow_html=True)
         st.link_button("ASSINAR AGORA", LINK_ASSINATURA, type="primary", use_container_width=True)
 
 # LADO ESQUERDO: A MÁQUINA DE CONTEÚDO
@@ -187,5 +187,6 @@ st.markdown(f"""
     Content Master AI © {datetime.now().year} • O Seu Novo Diretor de Criação.
 </div>
 """, unsafe_allow_html=True)
+
 
 
