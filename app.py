@@ -12,7 +12,7 @@ from youtube_transcript_api._errors import NoTranscriptFound, VideoUnavailable, 
 st.set_page_config(page_title="Content Master AI", page_icon="💡", layout="wide")
 
 # --- LINKS DE FERRAMENTAS ---
-LINK_ASSINATURA = "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=SEU_LINK_AQUI"
+LINK_ASSINATURA = "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=ccbcc61fb6f14af0b5f564c024ce9ac6"
 LINK_CARROSSEL_IA = "https://www.manus.ai"
 LINK_EDICAO_VIDEO = "https://www.capcut.com"
 
@@ -187,3 +187,4 @@ st.markdown(f"""
     Content Master AI © {datetime.now().year} • O Seu Novo Diretor de Criação.
 </div>
 """, unsafe_allow_html=True)
+
