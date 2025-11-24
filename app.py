@@ -141,7 +141,7 @@ with col_app:
     
     if 'email_usuario' not in st.session_state or st.session_state.email_usuario not in CLIENTES_ATIVOS:
         st.warning("🔒 Assine ao lado para liberar a máquina.")
-        st.image("https://placehold.co/800x400/eeeeee/cccccc?text=Area+Bloqueada.+Conteudo+Premium+para+Assinantes", use_column_width=True)
+        st.image("https://placehold.co/800x400/eeeeee/cccccc?text=Area+Bloqueada.+Conteudo+Premium+para+Assinantes", use_container_width=True)
     else:
         # CONTROLES DE CRIAÇÃO (O NOVO DIFERENCIAL)
         st.caption(f"Olá, {st.session_state.email_usuario.split('@')[0]}! Qual tipo de conteúdo você precisa?")
@@ -187,6 +187,7 @@ st.markdown(f"""
     Content Master AI © {datetime.now().year} • O Seu Novo Diretor de Criação.
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
